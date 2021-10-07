@@ -12,7 +12,7 @@ export default {
 </script>
   
 
-<style>
+<style scoped>
 .painel {
   padding: 0 auto;
   border: solid 2px grey;
@@ -36,5 +36,9 @@ export default {
 
 .imagem-responsiva {
   width: 100%;
+}
+
+* {
+  box-shadow: 5px 5px 5px;
 }
 </style>
