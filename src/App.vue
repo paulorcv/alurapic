@@ -5,7 +5,7 @@
       type="search"
       class="filtro"
       placeholder="filtre por parte do título"
-      v-on:input="filtro = $event.target.value"
+      @input="filtro = $event.target.value"
     />
     <ul>
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro">
