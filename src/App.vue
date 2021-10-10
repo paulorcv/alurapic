@@ -2,8 +2,11 @@
   <div class="corpo">
     <nav>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/cadastro">Cadastro</router-link></li>
+        <li v-for="route in routes">
+          <router-link :to="route.path ? route.path : '/'">{{
+            route.titulo
+          }}</router-link>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -11,10 +14,17 @@
 </template>
 
 <script>
+import { routes } from "./routes";
 import Painel from "./components/shared/painel/Painel.vue";
 import ImagemResponsiva from "./components/shared/imagem-responsiva/ImagemResponsiva.vue";
 
-export default {};
+export default {
+  data() {
+    return {
+      routes,
+    };
+  },
+};
 </script>
   
 
