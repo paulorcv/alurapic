@@ -3,7 +3,7 @@
     @click="disparaAcao()"
     class="botao"
     :class="estiloDoBotao"
-    :type="titulo"
+    :type="tipo"
   >
     {{ rotulo }}
   </button>
