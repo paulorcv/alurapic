@@ -57,8 +57,10 @@ export default {
 
   methods: {
     grava() {
-      console.log("Enviar os dados para a api");
-      this.foto = new Foto();
+      this.$http.post("http://localhost:3000/v1/fotos", this.foto).then(
+        () => (this.foto = new Foto()),
+        (err) => alert(err)
+      );
     },
   },
 };
