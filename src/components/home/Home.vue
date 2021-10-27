@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="centralizado">{{ titulo }}</h1>
-    <p v-show="mensagem" class="centralizado"> {{ mensagem }} </p>
+    <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
     <input
       type="search"
       class="filtro"
@@ -50,7 +50,7 @@ export default {
       titulo: "Alurapic",
       fotos: [],
       filtro: "",
-      mensagem: ""
+      mensagem: "",
     };
   },
 
@@ -68,14 +68,19 @@ export default {
 
   methods: {
     remove(foto) {
-      this.$http.delete(`http://localhost:3000/v1/fotos/${foto._id}`)
-      .then( () => this.mensagem = 'Foto removida com sucesso', err => this.mensagem = `Erro ao remover foto: ${err}`)
-
+      this.$http.delete(`v1/fotos/${foto._id}`).then(
+        () => {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice(indice, 1);
+          this.mensagem = "Foto removida com sucesso";
+        },
+        (err) => (this.mensagem = `Erro ao remover foto: ${err}`)
+      );
     },
   },
 
   created() {
-    let promise = this.$http.get("http://localhost:3000/v1/fotos");
+    let promise = this.$http.get("v1/fotos");
 
     promise
       .then((res) => res.json())
