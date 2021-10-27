@@ -68,23 +68,34 @@ export default {
 
   methods: {
     remove(foto) {
-      this.$http.delete(`v1/fotos/${foto._id}`).then(
+      // a chave do objeto é o parâmetro usando no endereço do recurso
+
+      this.resource.delete({ id: foto._id }).then(
         () => {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1);
           this.mensagem = "Foto removida com sucesso";
         },
-        (err) => (this.mensagem = `Erro ao remover foto: ${err}`)
+        (err) => {
+          this.mensagem = "Não foi possível remover a foto";
+          console.log(err);
+        }
       );
     },
   },
 
   created() {
-    let promise = this.$http.get("v1/fotos");
+    // parametrizando o endereço
 
-    promise
+    this.resource = this.$resource("v1/fotos{/id}");
+
+    this.resource
+      .query()
       .then((res) => res.json())
-      .then((fotos) => ((this.fotos = fotos), (err) => alert(err)));
+      .then(
+        (fotos) => (this.fotos = fotos),
+        (err) => console.log(err)
+      );
   },
 };
 </script>
