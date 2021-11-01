@@ -14,7 +14,7 @@ import Menu from "./components/shared/menu/Menu.vue";
 export default {
   data() {
     return {
-      routes,
+      routes: routes.filter(route => route.menu),
     };
   },
 
