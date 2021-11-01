@@ -16,7 +16,7 @@
             :titulo="foto.titulo"
             v-meu-transform:scale.animate="1.2"
           />
-          <router-link :to="{name: 'altera', params: {id: foto._id}}">
+          <router-link :to="{ name: 'altera', params: { id: foto._id } }">
             <meu-botao rotulo="ALTERAR" tipo="button" />
           </router-link>
           <meu-botao
@@ -81,8 +81,7 @@ export default {
           this.mensagem = "Foto removida com sucesso";
         },
         (err) => {
-          this.mensagem = "Não foi possível remover a foto";
-          console.log(err);
+          this.mensagem = err.message;
         }
       );
     },
@@ -93,7 +92,7 @@ export default {
 
     this.service.lista().then(
       (fotos) => (this.fotos = fotos),
-      (err) => console.log(err)
+      (err) => (this.mensagem = err.message)
     );
   },
 };
