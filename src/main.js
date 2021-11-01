@@ -7,6 +7,7 @@ import VeeValidate from "vee-validate";
 import "./directives/Transform";
 import msg from './pt_BR';
 import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/js/bootstrap.js";
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
